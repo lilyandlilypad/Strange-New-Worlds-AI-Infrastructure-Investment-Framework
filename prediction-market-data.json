@@ -1,0 +1,24 @@
+{
+  "updatedAt": null,
+  "currencyNote": "Prices are per share in the exchange's trading currency. Refresh manually each week.",
+  "prices": {
+    "NVDA": { "company": "NVIDIA", "currency": "USD", "price": null, "source": "https://finance.yahoo.com/quote/NVDA/" },
+    "TSM": { "company": "TSMC", "currency": "USD", "price": null, "source": "https://finance.yahoo.com/quote/TSM/" },
+    "QCOM": { "company": "Qualcomm", "currency": "USD", "price": null, "source": "https://finance.yahoo.com/quote/QCOM/" },
+    "AAPL": { "company": "Apple", "currency": "USD", "price": null, "source": "https://finance.yahoo.com/quote/AAPL/" },
+    "005930.KS": { "company": "Samsung Electronics", "currency": "KRW", "price": null, "source": "https://finance.yahoo.com/quote/005930.KS/" },
+    "AMD": { "company": "AMD", "currency": "USD", "price": null, "source": "https://finance.yahoo.com/quote/AMD/" },
+    "INTC": { "company": "Intel", "currency": "USD", "price": null, "source": "https://finance.yahoo.com/quote/INTC/" },
+    "AVGO": { "company": "Broadcom", "currency": "USD", "price": null, "source": "https://finance.yahoo.com/quote/AVGO/" },
+    "GOOGL": { "company": "Alphabet / Google", "currency": "USD", "price": null, "source": "https://finance.yahoo.com/quote/GOOGL/" },
+    "AMZN": { "company": "Amazon", "currency": "USD", "price": null, "source": "https://finance.yahoo.com/quote/AMZN/" }
+  },
+  "roundSchedule": {
+    "firstYear": 2027,
+    "lastYear": 2031,
+    "quarterlyTargetDates": ["03-31", "06-30", "09-30", "12-31"],
+    "annualLastYear": 2030,
+    "fiveYearTargetDate": "2031-10-12"
+  },
+  "actuals": {}
+}

@@ -20,6 +20,65 @@ To refresh the dataset, run `python3 scripts/update_prices.py` after the relevan
 then reload the homepage. The updater retrieves the full history from Day 1 and replaces
 `price-history.json`; it does not make trades or run automatically.
 
+## Visitor Prediction Game
+
+The homepage places a visitor challenge beside the tracking timeline. Visitors choose an avatar,
+a public stock, a quarterly/annual/five-year round, and either an exact predicted closing price
+or a percentage move from that stock's manually updated weekly reference price. Percentage
+predictions are converted to a target price at submission and require a valid weekly reference
+price for the selected ticker. Quarterly
+rounds target each calendar quarter-end from 2027 through 2031; annual rounds target December 31
+from 2027 through 2030; the five-year round targets October 12, 2031. Since Q4 and annual rounds
+share a close date, they are distinct leaderboard rounds. Entries close at the start of the target
+date (UTC), before the market-close result is known.
+
+Predictions are stored in a shared Supabase table and shown publicly. The leaderboard score is
+`max(0, 100 × (1 - abs(prediction - actual) / actual))`; higher percentage accuracy ranks first.
+Scoring stays pending until the round's actual closing prices are added to the JSON data. Actual
+prices should be split-adjusted closing prices from the target date or the last trading session
+before it, using each security's exchange calendar and currency.
+
+### One-Time Supabase Setup
+
+1. Create a Supabase project and run [`supabase/predictions.sql`](./supabase/predictions.sql)
+   in its SQL Editor.
+2. In [`prediction-config.js`](./prediction-config.js), set `url` to the project URL and
+   `publishableKey` to that project's public publishable/anon key. These client values are
+   intended for the public page; never put a service-role or secret key in the repository.
+3. Publish the configuration and site. The game will show an explicit setup status until the
+   project URL and key are supplied.
+
+The SQL script seeds the same dated rounds offered by the page and enforces the cutoff in the
+database, so a direct API request cannot submit to a round on or after its target date.
+
+The table is publicly readable and accepts anonymous inserts; it does not accept edits or
+deletions from page visitors. Each normalized avatar can enter once per stock in each round.
+Use an avatar rather than a real name, and do not submit personal information. The SQL
+constraints validate avatar format, ticker, price, one-entry limit, and round cutoff, but this
+simple public setup does not provide identity verification or strong abuse/rate limiting.
+
+### Weekly Price and Results Updates
+
+Edit [`prediction-market-data.json`](./prediction-market-data.json) manually once a week:
+
+- Set `updatedAt` to the date of the snapshot (`YYYY-MM-DD`).
+- For each symbol in `prices`, set `price` to the latest observed market price in the listed
+  currency. Keep the source link; use the same convention each week.
+- After a round closes, add the official split-adjusted close and its actual trading date under
+  `actuals`, keyed by round ID and ticker. For example:
+
+```json
+"actuals": {
+  "quarterly-2027-q1": {
+    "NVDA": { "price": 123.45, "closeDate": "2027-03-31" }
+  }
+}
+```
+
+The example values illustrate the JSON shape only; replace them with verified prices. Leave other
+symbols absent until their actuals have been checked. Commit and publish the edited JSON so the
+leaderboard can score predictions against the recorded results.
+
 ## Quarterly Tracking Schedule
 
 The first scheduled tracking checkpoint is January 1, 2027 (Q1). Continue every three months

@@ -465,6 +465,120 @@
         font-size: 0.92rem;
       }
 
+      .tracking-game-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+        align-items: start;
+        gap: 1.25rem;
+      }
+
+      .tracking-panel,
+      .prediction-game {
+        min-width: 0;
+      }
+
+      .prediction-game h3 {
+        margin-bottom: 0.5rem;
+      }
+
+      .prediction-form {
+        display: grid;
+        gap: 0.85rem;
+        margin-block: 1rem;
+      }
+
+      .prediction-form label {
+        display: grid;
+        gap: 0.3rem;
+        font-size: 0.9rem;
+        font-weight: 650;
+      }
+
+      .prediction-form input,
+      .prediction-form select,
+      .prediction-form button {
+        width: 100%;
+        min-height: 2.6rem;
+        padding: 0.55rem 0.7rem;
+        border: 1px solid var(--border);
+        border-radius: 0.4rem;
+        background: var(--page);
+        color: var(--text);
+        font: inherit;
+      }
+
+      .prediction-form button {
+        border-color: var(--accent-strong);
+        background: var(--accent-strong);
+        color: var(--page);
+        cursor: pointer;
+        font-weight: 750;
+      }
+
+      .prediction-form button:disabled {
+        cursor: not-allowed;
+        opacity: 0.55;
+      }
+
+      .prediction-form-status,
+      .prediction-game-status,
+      .prediction-price-status {
+        min-height: 1.5em;
+        margin-block: 0.4rem;
+        color: var(--muted);
+        font-size: 0.82rem;
+        overflow-wrap: anywhere;
+      }
+
+      .prediction-current-prices {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.4rem;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .prediction-price-chip {
+        display: flex;
+        justify-content: space-between;
+        gap: 0.3rem;
+        padding: 0.35rem 0.45rem;
+        border: 1px solid var(--border);
+        border-radius: 0.35rem;
+        color: var(--muted);
+        font-size: 0.76rem;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .prediction-price-chip strong {
+        color: var(--text);
+      }
+
+      .prediction-table-scroll {
+        overflow-x: auto;
+      }
+
+      .prediction-leaderboard {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.78rem;
+        font-variant-numeric: tabular-nums;
+        text-align: left;
+      }
+
+      .prediction-leaderboard th,
+      .prediction-leaderboard td {
+        padding: 0.5rem 0.35rem;
+        border-top: 1px solid var(--border);
+        white-space: nowrap;
+      }
+
+      .prediction-leaderboard th {
+        color: var(--muted);
+        font-weight: 650;
+      }
+
       .disclaimer {
         margin-block: 0 3rem;
         padding: 1rem 1.15rem;
@@ -487,7 +601,8 @@
 
       @media (max-width: 700px) {
         .portfolio-grid,
-        .timeline {
+        .timeline,
+        .tracking-game-grid {
           grid-template-columns: 1fr;
         }
 
@@ -729,53 +844,160 @@
         </div>
       </section>
 
-      <section class="section container" id="timeline" aria-labelledby="timeline-title">
-        <div class="section-heading">
-          <p class="eyebrow">Stay accountable</p>
-          <h2 id="timeline-title">Tracking timeline</h2>
-          <p>
-            The first scheduled review is January 1, 2027. Check in on the first day of each
-            quarter, compare each quarter with the same quarter a year earlier, and use Q4 for the
-            annual review.
-          </p>
+      <section class="section container" id="tracking" aria-label="Tracking schedule and prediction game">
+        <div class="tracking-game-grid">
+          <div class="tracking-panel" id="timeline">
+            <div class="section-heading">
+              <p class="eyebrow">Stay accountable</p>
+              <h2 id="timeline-title">Tracking timeline</h2>
+              <p>
+                The first scheduled review is January 1, 2027. Check in on the first day of each
+                quarter, compare each quarter with the same quarter a year earlier, and use Q4 for
+                the annual review.
+              </p>
+            </div>
+            <ol class="timeline">
+              <li>
+                <span class="timeline-date">January 1, 2027 · Q1</span>
+                <span class="timeline-title">First quarterly checkpoint</span>
+                <p class="timeline-copy">Establish the scheduled-review baseline and record the latest available data.</p>
+              </li>
+              <li>
+                <span class="timeline-date">April 1 · Q2 / July 1 · Q3</span>
+                <span class="timeline-title">Quarterly checkpoints</span>
+                <p class="timeline-copy">Track portfolio performance, market indicators, watchlist changes, and thesis confidence.</p>
+              </li>
+              <li>
+                <span class="timeline-date">October 1 · Q4</span>
+                <span class="timeline-title">Quarterly checkpoint</span>
+                <p class="timeline-copy">Complete the fourth scheduled review and compare it with the prior year’s Q4.</p>
+              </li>
+              <li>
+                <span class="timeline-date">December 31 · Year-end</span>
+                <span class="timeline-title">Annual review alongside Q4</span>
+                <p class="timeline-copy">Summarize all four checkpoints and compare year-end results with the prior year.</p>
+              </li>
+              <li>
+                <span class="timeline-date">From January 1, 2028</span>
+                <span class="timeline-title">Same-quarter year-over-year overlays</span>
+                <p class="timeline-copy">Compare Q1 with Q1, Q2 with Q2, and so on; for example, Q2 2028 alongside Q2 2027.</p>
+              </li>
+              <li>
+                <span class="timeline-date">October 2031 · October 2036 · October 2056</span>
+                <span class="timeline-title">5-, 10-, and 30-year milestones</span>
+                <p class="timeline-copy">Major thesis reviews at each long-term milestone.</p>
+              </li>
+            </ol>
+            <p class="card-copy">
+              Use the <a href="tracking-plan.md#quarterly-tracking-schedule">quarterly tracking
+              schedule and review template</a> to record each checkpoint and preserve prior-year
+              comparisons.
+            </p>
+          </div>
+          <section class="card prediction-game" id="prediction-game" aria-labelledby="prediction-title">
+            <p class="eyebrow">Visitor challenge</p>
+            <h2 id="prediction-title">Price prediction game</h2>
+            <p class="card-copy">
+              Pick a public company and predict its split-adjusted closing price for a quarterly,
+              annual, or five-year round. Round dates follow the tracking schedule.
+            </p>
+            <p class="card-copy">
+              Enter an avatar name only, not your real name. Predictions are public and permanent.
+              You get one prediction per stock in each round and cannot edit it. Score is 100%
+              minus percentage error, floored at 0%; closest forecast ranks highest.
+            </p>
+            <h3>Weekly reference prices</h3>
+            <ul
+              class="prediction-current-prices"
+              id="prediction-current-prices"
+              aria-label="Manually updated weekly reference prices"
+            ></ul>
+            <p class="prediction-price-status" id="prediction-price-status" role="status">
+              Loading weekly reference prices…
+            </p>
+            <form class="prediction-form" id="prediction-form">
+              <label>
+                Avatar name
+                <input
+                  name="avatar"
+                  type="text"
+                  minlength="2"
+                  maxlength="24"
+                  pattern="[A-Za-z0-9 _.-]{2,24}"
+                  autocomplete="nickname"
+                  required
+                >
+              </label>
+              <label>
+                Round
+                <select id="prediction-round" name="round" required></select>
+              </label>
+              <label>
+                Company
+                <select id="prediction-symbol" name="symbol" required></select>
+              </label>
+              <label>
+                Prediction method
+                <select id="prediction-mode" name="prediction-mode" required>
+                  <option value="exact">Enter exact price</option>
+                  <option value="percent">Enter +/- % from current price</option>
+                </select>
+              </label>
+              <label id="prediction-exact-field">
+                Exact predicted closing price
+                <input
+                  id="prediction-price"
+                  name="price"
+                  type="number"
+                  min="0.0001"
+                  max="999999999"
+                  step="any"
+                  inputmode="decimal"
+                  required
+                >
+              </label>
+              <label id="prediction-percent-field" hidden>
+                Change from weekly reference price (%)
+                <input
+                  id="prediction-percent"
+                  name="percent"
+                  type="number"
+                  min="-99.99"
+                  max="999999"
+                  step="any"
+                  inputmode="decimal"
+                  disabled
+                  required
+                >
+              </label>
+              <p class="prediction-form-status" id="prediction-price-preview" aria-live="polite">
+                Enter a price, or choose a percentage move from the weekly reference price.
+              </p>
+              <button id="prediction-submit" type="submit" disabled>Submit prediction</button>
+              <p class="prediction-form-status" id="prediction-status" role="status"></p>
+            </form>
+            <h3>Leaderboard</h3>
+            <p class="prediction-game-status" id="prediction-game-status" role="status">
+              Loading prediction game…
+            </p>
+            <div class="prediction-table-scroll">
+              <table class="prediction-leaderboard">
+                <thead>
+                  <tr>
+                    <th>Rank · avatar</th>
+                    <th>Stock</th>
+                    <th>Guess</th>
+                    <th>Accuracy</th>
+                    <th>Actual close</th>
+                  </tr>
+                </thead>
+                <tbody id="prediction-leaderboard-body">
+                  <tr><td colspan="5">Loading predictions…</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
         </div>
-        <ol class="timeline">
-          <li>
-            <span class="timeline-date">January 1, 2027 · Q1</span>
-            <span class="timeline-title">First quarterly checkpoint</span>
-            <p class="timeline-copy">Establish the scheduled-review baseline and record the latest available data.</p>
-          </li>
-          <li>
-            <span class="timeline-date">April 1 · Q2 / July 1 · Q3</span>
-            <span class="timeline-title">Quarterly checkpoints</span>
-            <p class="timeline-copy">Track portfolio performance, market indicators, watchlist changes, and thesis confidence.</p>
-          </li>
-          <li>
-            <span class="timeline-date">October 1 · Q4</span>
-            <span class="timeline-title">Quarterly checkpoint</span>
-            <p class="timeline-copy">Complete the fourth scheduled review and compare it with the prior year’s Q4.</p>
-          </li>
-          <li>
-            <span class="timeline-date">December 31 · Year-end</span>
-            <span class="timeline-title">Annual review alongside Q4</span>
-            <p class="timeline-copy">Summarize all four checkpoints and compare year-end results with the prior year.</p>
-          </li>
-          <li>
-            <span class="timeline-date">From January 1, 2028</span>
-            <span class="timeline-title">Same-quarter year-over-year overlays</span>
-            <p class="timeline-copy">Compare Q1 with Q1, Q2 with Q2, and so on; for example, Q2 2028 alongside Q2 2027.</p>
-          </li>
-          <li>
-            <span class="timeline-date">October 2031 · October 2036 · October 2056</span>
-            <span class="timeline-title">5-, 10-, and 30-year milestones</span>
-            <p class="timeline-copy">Major thesis reviews at each long-term milestone.</p>
-          </li>
-        </ol>
-        <p class="card-copy">
-          Use the <a href="tracking-plan.md#quarterly-tracking-schedule">quarterly tracking
-          schedule and review template</a> to record each checkpoint and preserve prior-year
-          comparisons.
-        </p>
       </section>
 
       <aside class="container disclaimer" aria-label="Investment disclaimer">
@@ -795,5 +1017,7 @@
     <script src="company-logos.js" defer></script>
     <script src="company-quotes.js" defer></script>
     <script src="tier-charts.js" defer></script>
+    <script src="prediction-config.js" defer></script>
+    <script src="prediction-game.js" defer></script>
   </body>
 </html>

@@ -27,9 +27,14 @@ when changes are pushed to `main`.
 
 The homepage includes public-company trend charts for each tier, rebased to October 12, 2026
 (Day 1). Refresh the Yahoo Finance history with `python3 scripts/update_prices.py` after market
-close; see the [tracking plan](./tracking-plan.md#public-share-price-charts) for methodology. A
-TradingView displays current quotes in a ticker tape and beside public holding names; quotes may
-be delayed depending on the exchange and data entitlement.
+close; see the [tracking plan](./tracking-plan.md#public-share-price-charts) for methodology.
+TradingView also displays current quotes in a ticker tape and beside public holding names; quotes
+may be delayed depending on the exchange and data entitlement.
+
+The dashboard includes a visitor price-prediction game with a public leaderboard. Set up its
+Supabase project and weekly JSON price updates using the
+[prediction game instructions](./tracking-plan.md#visitor-prediction-game). Visitors can predict
+an exact price or a percentage change from the selected stock's weekly reference price.
 
 ## Tracking milestones
 
