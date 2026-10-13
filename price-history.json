@@ -1,0 +1,127 @@
+{
+  "dayOne": "2026-10-12",
+  "updatedAt": "2026-10-12T21:29:13+00:00",
+  "priceBasis": "Yahoo Finance adjusted close when available",
+  "securities": {
+    "NVDA": {
+      "name": "NVIDIA",
+      "tier": "core",
+      "currency": "USD",
+      "source": "https://finance.yahoo.com/quote/NVDA/history/",
+      "points": [
+        {
+          "date": "2026-10-12",
+          "adjustedClose": 226.320007
+        }
+      ]
+    },
+    "TSM": {
+      "name": "TSMC",
+      "tier": "core",
+      "currency": "USD",
+      "source": "https://finance.yahoo.com/quote/TSM/history/",
+      "points": [
+        {
+          "date": "2026-10-12",
+          "adjustedClose": 444.350006
+        }
+      ]
+    },
+    "QCOM": {
+      "name": "Qualcomm",
+      "tier": "core",
+      "currency": "USD",
+      "source": "https://finance.yahoo.com/quote/QCOM/history/",
+      "points": [
+        {
+          "date": "2026-10-12",
+          "adjustedClose": 174.429993
+        }
+      ]
+    },
+    "AAPL": {
+      "name": "Apple",
+      "tier": "core",
+      "currency": "USD",
+      "source": "https://finance.yahoo.com/quote/AAPL/history/",
+      "points": [
+        {
+          "date": "2026-10-12",
+          "adjustedClose": 340.970001
+        }
+      ]
+    },
+    "005930.KS": {
+      "name": "Samsung Electronics",
+      "tier": "expanded",
+      "currency": "KRW",
+      "source": "https://finance.yahoo.com/quote/005930.KS/history/",
+      "points": [
+        {
+          "date": "2026-10-12",
+          "adjustedClose": 250500.0
+        }
+      ]
+    },
+    "AMD": {
+      "name": "AMD",
+      "tier": "expanded",
+      "currency": "USD",
+      "source": "https://finance.yahoo.com/quote/AMD/history/",
+      "points": [
+        {
+          "date": "2026-10-12",
+          "adjustedClose": 594.23999
+        }
+      ]
+    },
+    "INTC": {
+      "name": "Intel",
+      "tier": "expanded",
+      "currency": "USD",
+      "source": "https://finance.yahoo.com/quote/INTC/history/",
+      "points": [
+        {
+          "date": "2026-10-12",
+          "adjustedClose": 101.349998
+        }
+      ]
+    },
+    "AVGO": {
+      "name": "Broadcom",
+      "tier": "expanded",
+      "currency": "USD",
+      "source": "https://finance.yahoo.com/quote/AVGO/history/",
+      "points": [
+        {
+          "date": "2026-10-12",
+          "adjustedClose": 354.730011
+        }
+      ]
+    },
+    "GOOGL": {
+      "name": "Alphabet / Google",
+      "tier": "app",
+      "currency": "USD",
+      "source": "https://finance.yahoo.com/quote/GOOGL/history/",
+      "points": [
+        {
+          "date": "2026-10-12",
+          "adjustedClose": 352.720001
+        }
+      ]
+    },
+    "AMZN": {
+      "name": "Amazon",
+      "tier": "app",
+      "currency": "USD",
+      "source": "https://finance.yahoo.com/quote/AMZN/history/",
+      "points": [
+        {
+          "date": "2026-10-12",
+          "adjustedClose": 259.529999
+        }
+      ]
+    }
+  }
+}

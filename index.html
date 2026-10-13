@@ -1,0 +1,703 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="A 30-year public thesis test exploring AI infrastructure through a $10,000 portfolio tracked over time."
+    >
+    <title>Strange New Worlds | AI Infrastructure Investment Framework</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --page: #0a0e18;
+        --surface: #111827;
+        --surface-raised: #172235;
+        --text: #f4f7fb;
+        --muted: #a8b4c7;
+        --accent: #8be9d1;
+        --accent-strong: #46c9aa;
+        --border: rgb(195 215 241 / 14%);
+        --warning: #f5cb83;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      body {
+        min-width: 320px;
+        margin: 0;
+        background:
+          radial-gradient(ellipse at 78% 0%, rgb(70 201 170 / 13%), transparent 33rem),
+          var(--page);
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .container {
+        width: min(1080px, calc(100% - 2rem));
+        margin-inline: auto;
+      }
+
+      .site-header {
+        padding-block: 1.25rem;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .header-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .brand-block {
+        min-width: 0;
+      }
+
+      .brand {
+        color: var(--accent);
+        font-size: 0.8rem;
+        font-weight: 750;
+        letter-spacing: 0.14em;
+        text-decoration: none;
+        text-transform: uppercase;
+      }
+
+      .page-meta {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        margin: 0.25rem 0 0;
+        color: var(--muted);
+        font-size: 0.76rem;
+      }
+
+      .seasonal-lily {
+        width: 1.9rem;
+        height: 1.9rem;
+        object-fit: contain;
+        vertical-align: middle;
+      }
+
+      .site-nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem 1rem;
+      }
+
+      .site-nav a {
+        color: var(--muted);
+        font-size: 0.85rem;
+        text-decoration: none;
+      }
+
+      .site-nav a:hover,
+      .site-nav a:focus-visible {
+        color: var(--accent);
+      }
+
+      .hero {
+        padding-block: clamp(4rem, 10vw, 7.5rem);
+      }
+
+      .eyebrow {
+        margin: 0 0 1rem;
+        color: var(--accent);
+        font-size: 0.78rem;
+        font-weight: 750;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h1 {
+        max-width: none;
+        margin-bottom: 1.25rem;
+        font-size: clamp(1.6rem, 4vw, 2.75rem);
+        letter-spacing: -0.055em;
+        line-height: 1.02;
+        word-spacing: 0.12em;
+      }
+
+      .hero-copy {
+        max-width: 650px;
+        margin-bottom: 2rem;
+        color: var(--muted);
+        font-size: clamp(1.05rem, 2.5vw, 1.25rem);
+      }
+
+      .thesis-points {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.65rem;
+        padding: 0;
+        list-style: none;
+      }
+
+      .thesis-points li {
+        padding: 0.55rem 0.85rem;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        background: rgb(17 24 39 / 70%);
+        font-size: 0.9rem;
+        font-weight: 650;
+      }
+
+      .section {
+        padding-block: 2.5rem 4.5rem;
+      }
+
+      .section-heading {
+        margin-bottom: 1.5rem;
+      }
+
+      .section-heading h2 {
+        margin-bottom: 0.4rem;
+        font-size: clamp(1.7rem, 4vw, 2.4rem);
+        letter-spacing: -0.035em;
+      }
+
+      .section-heading p,
+      .card-copy,
+      .timeline-copy {
+        color: var(--muted);
+      }
+
+      .portfolio-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.25rem;
+      }
+
+      .tier-chart-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 330px), 1fr));
+        gap: 1.25rem;
+      }
+
+      .card {
+        padding: clamp(1.25rem, 3vw, 2rem);
+        border: 1px solid var(--border);
+        border-radius: 1rem;
+        background: linear-gradient(145deg, var(--surface-raised), var(--surface) 65%);
+      }
+
+      .card h3 {
+        margin-bottom: 0.25rem;
+        font-size: 1.25rem;
+      }
+
+      .allocation {
+        margin-bottom: 1rem;
+        color: var(--accent);
+        font-size: 0.92rem;
+        font-weight: 700;
+      }
+
+      .holding-list,
+      .watchlist,
+      .timeline {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .holding-list li,
+      .watchlist li {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 0.8rem;
+        padding-block: 0.8rem;
+        border-top: 1px solid var(--border);
+      }
+
+      .holding-name {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        font-weight: 650;
+      }
+
+      .company-logo {
+        display: inline-grid;
+        width: 1.35rem;
+        height: 1.35rem;
+        flex: 0 0 1.35rem;
+        place-items: center;
+        color: var(--accent);
+      }
+
+      .company-logo img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .company-logo-fallback {
+        display: grid;
+        width: 100%;
+        height: 100%;
+        place-items: center;
+        border: 1px solid var(--border);
+        border-radius: 0.35rem;
+        background: var(--surface-raised);
+        color: var(--accent);
+        font-size: 0.56rem;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+      }
+
+      .company-links {
+        display: block;
+        margin-top: 0.2rem;
+        color: var(--muted);
+        font-size: 0.78rem;
+        font-weight: 500;
+      }
+
+      .company-links a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+
+      .company-links a:hover,
+      .company-links a:focus-visible {
+        text-decoration: underline;
+      }
+
+      .holding-detail {
+        display: block;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .holding-amount {
+        color: var(--accent);
+        font-variant-numeric: tabular-nums;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+
+      .watchlist-card {
+        margin-top: 1.25rem;
+      }
+
+      .app-tier-card {
+        margin-top: 1.25rem;
+        border-color: rgb(139 233 209 / 30%);
+      }
+
+      .simulation-note {
+        padding: 0.8rem 1rem;
+        border-left: 3px solid var(--accent-strong);
+        background: rgb(70 201 170 / 7%);
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .tier-chart-card {
+        min-width: 0;
+      }
+
+      .tier-chart {
+        display: block;
+        width: 100%;
+        height: auto;
+        overflow: visible;
+      }
+
+      .chart-gridline {
+        stroke: var(--border);
+        stroke-width: 1;
+      }
+
+      .chart-baseline {
+        stroke: var(--accent);
+        stroke-dasharray: 5 5;
+        stroke-width: 1.5;
+      }
+
+      .chart-axis-label {
+        fill: var(--muted);
+        font-size: 12px;
+      }
+
+      .chart-line {
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 2;
+      }
+
+      .chart-line-average {
+        stroke-width: 3.5;
+      }
+
+      .chart-legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem 0.85rem;
+        margin-top: 0.75rem;
+      }
+
+      .chart-legend-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        color: var(--muted);
+        font-size: 0.78rem;
+      }
+
+      .chart-company-logo {
+        width: 1rem;
+        height: 1rem;
+        flex-basis: 1rem;
+      }
+
+      .chart-legend-swatch {
+        width: 0.8rem;
+        height: 0.2rem;
+        border-radius: 999px;
+        background: var(--series-color);
+      }
+
+      .chart-status {
+        margin-block: 0.75rem 0;
+        color: var(--muted);
+        font-size: 0.82rem;
+      }
+
+      .watchlist li {
+        display: block;
+      }
+
+      .caution {
+        color: var(--warning);
+        font-size: 0.86rem;
+        font-weight: 700;
+      }
+
+      .timeline {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+      }
+
+      .timeline li {
+        padding: 1.25rem;
+        border-top: 2px solid var(--accent-strong);
+        border-radius: 0.25rem 0.25rem 0.75rem 0.75rem;
+        background: var(--surface);
+      }
+
+      .timeline-date {
+        display: block;
+        margin-bottom: 0.45rem;
+        color: var(--accent);
+        font-weight: 750;
+      }
+
+      .timeline-title {
+        display: block;
+        margin-bottom: 0.35rem;
+        font-weight: 700;
+      }
+
+      .timeline-copy {
+        margin-bottom: 0;
+        font-size: 0.92rem;
+      }
+
+      .disclaimer {
+        margin-block: 0 3rem;
+        padding: 1rem 1.15rem;
+        border-left: 3px solid var(--warning);
+        background: rgb(245 203 131 / 7%);
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .site-footer {
+        padding-block: 1.5rem;
+        border-top: 1px solid var(--border);
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+
+      .site-footer p {
+        margin-bottom: 0;
+      }
+
+      @media (max-width: 700px) {
+        .portfolio-grid,
+        .timeline {
+          grid-template-columns: 1fr;
+        }
+
+        .header-content {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-content">
+        <div class="brand-block">
+          <a class="brand" href="#top">Strange New Worlds</a>
+          <p class="page-meta">
+            <img id="seasonal-lily" class="seasonal-lily" alt="" hidden>
+            <span>Author: lilyandlilypad</span>
+            <span aria-hidden="true">·</span>
+            <span>Last modified:</span>
+            <time id="last-modified" datetime="">Loading…</time>
+          </p>
+        </div>
+        <nav class="site-nav" aria-label="Project documents">
+          <a href="portfolio.md">Portfolio</a>
+          <a href="#performance">Tier charts</a>
+          <a href="company-financials.md">Company financials</a>
+          <a href="historical-analysis.md">Thesis</a>
+          <a href="risk-analysis.md">Risks</a>
+          <a href="tracking-plan.md">Tracking plan</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero container" aria-labelledby="page-title">
+        <p class="eyebrow">A 30-year public thesis test</p>
+        <h1 id="page-title">Follow the infrastructure behind the AI era.</h1>
+        <p class="hero-copy">
+          A $10,000 portfolio framework tracking whether the foundations of AI
+          create more lasting value than the applications built on top of them.
+        </p>
+        <ul class="thesis-points" aria-label="Core investment thesis">
+          <li>Infrastructure &gt; Applications</li>
+          <li>Hardware &gt; Software</li>
+          <li>Chips &gt; Code</li>
+        </ul>
+      </section>
+
+      <section class="section container" id="portfolio" aria-labelledby="portfolio-title">
+        <div class="section-heading">
+          <p class="eyebrow">The framework</p>
+          <h2 id="portfolio-title">Portfolio structure</h2>
+          <p>Two $5,000 tiers focus on compute, manufacturing, memory, and edge infrastructure.</p>
+        </div>
+
+        <div class="portfolio-grid">
+          <article class="card">
+            <h3>Tier 1 · Core infrastructure</h3>
+            <p class="allocation">$5,000 total · $1,000 per position</p>
+            <ul class="holding-list">
+              <li>
+                <span><span class="holding-name" data-company-logo="nvidia">NVIDIA (NVDA)</span><span class="company-links"><a href="https://finance.yahoo.com/quote/NVDA/" target="_blank" rel="noopener noreferrer">Yahoo Finance</a> · <a href="https://www.bloomberg.com/quote/NVDA:US" target="_blank" rel="noopener noreferrer">Bloomberg</a></span><span class="holding-detail">Personal AI compute</span></span>
+                <span class="holding-amount">$1,000</span>
+              </li>
+              <li>
+                <span><span class="holding-name" data-company-logo="tsmc">TSMC (TSM)</span><span class="company-links"><a href="https://finance.yahoo.com/quote/TSM/" target="_blank" rel="noopener noreferrer">Yahoo Finance</a> · <a href="https://www.bloomberg.com/quote/TSM:US" target="_blank" rel="noopener noreferrer">Bloomberg</a></span><span class="holding-detail">Semiconductor manufacturing</span></span>
+                <span class="holding-amount">$1,000</span>
+              </li>
+              <li>
+                <span><span class="holding-name" data-company-logo="qualcomm">Qualcomm (QCOM)</span><span class="company-links"><a href="https://finance.yahoo.com/quote/QCOM/" target="_blank" rel="noopener noreferrer">Yahoo Finance</a> · <a href="https://www.bloomberg.com/quote/QCOM:US" target="_blank" rel="noopener noreferrer">Bloomberg</a></span><span class="holding-detail">Mobile AI</span></span>
+                <span class="holding-amount">$1,000</span>
+              </li>
+              <li>
+                <span><span class="holding-name" data-company-logo="apple">Apple (AAPL)</span><span class="company-links"><a href="https://finance.yahoo.com/quote/AAPL/" target="_blank" rel="noopener noreferrer">Yahoo Finance</a> · <a href="https://www.bloomberg.com/quote/AAPL:US" target="_blank" rel="noopener noreferrer">Bloomberg</a></span><span class="holding-detail">Personal data center ecosystem</span></span>
+                <span class="holding-amount">$1,000</span>
+              </li>
+              <li>
+                <span><span class="holding-name" data-company-logo="tbd"><a href="company-financials.md#unknown-tbd-positions">Unknown (TBD)</a></span><span class="holding-detail">Distributed AI protocol winner</span></span>
+                <span class="holding-amount">$1,000</span>
+              </li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Tier 2 · Expanded infrastructure</h3>
+            <p class="allocation">$5,000 total · $1,000 per position</p>
+            <ul class="holding-list">
+              <li>
+                <span><span class="holding-name" data-company-logo="samsung">Samsung Electronics (005930.KS)</span><span class="company-links"><a href="https://finance.yahoo.com/quote/005930.KS/" target="_blank" rel="noopener noreferrer">Yahoo Finance</a> · <a href="https://www.bloomberg.com/quote/005930:KS" target="_blank" rel="noopener noreferrer">Bloomberg</a></span><span class="holding-detail">Memory for AI · U.S. OTC symbol: SSNLF</span></span>
+                <span class="holding-amount">$1,000</span>
+              </li>
+              <li>
+                <span><span class="holding-name" data-company-logo="amd">AMD (AMD)</span><span class="company-links"><a href="https://finance.yahoo.com/quote/AMD/" target="_blank" rel="noopener noreferrer">Yahoo Finance</a> · <a href="https://www.bloomberg.com/quote/AMD:US" target="_blank" rel="noopener noreferrer">Bloomberg</a></span><span class="holding-detail">GPU/CPU alternative</span></span>
+                <span class="holding-amount">$1,000</span>
+              </li>
+              <li>
+                <span><span class="holding-name" data-company-logo="intel">Intel (INTC)</span><span class="company-links"><a href="https://finance.yahoo.com/quote/INTC/" target="_blank" rel="noopener noreferrer">Yahoo Finance</a> · <a href="https://www.bloomberg.com/quote/INTC:US" target="_blank" rel="noopener noreferrer">Bloomberg</a></span><span class="holding-detail">Turnaround play</span></span>
+                <span class="holding-amount">$1,000</span>
+              </li>
+              <li>
+                <span><span class="holding-name" data-company-logo="broadcom">Broadcom (AVGO)</span><span class="company-links"><a href="https://finance.yahoo.com/quote/AVGO/" target="_blank" rel="noopener noreferrer">Yahoo Finance</a> · <a href="https://www.bloomberg.com/quote/AVGO:US" target="_blank" rel="noopener noreferrer">Bloomberg</a></span><span class="holding-detail">Edge networking</span></span>
+                <span class="holding-amount">$1,000</span>
+              </li>
+              <li>
+                <span><span class="holding-name" data-company-logo="tbd"><a href="company-financials.md#unknown-tbd-positions">Unknown (TBD)</a></span><span class="holding-detail">Edge computing plays</span></span>
+                <span class="holding-amount">$1,000</span>
+              </li>
+            </ul>
+          </article>
+        </div>
+
+        <article class="card app-tier-card">
+          <h3>App Tier Companies · Simulated Portfolio</h3>
+          <p class="allocation">$5,000 simulated total · $1,000 fake allocation per company</p>
+          <p class="simulation-note">
+            Paper tracking only—not part of the $10,000 real-money portfolio. Each company
+            receives an equal $1,000 simulated allocation.
+          </p>
+          <ul class="watchlist">
+            <li>
+              <span class="holding-name" data-company-logo="openai"><a href="company-financials.md#openai">OpenAI</a></span> · AI applications
+              <span class="holding-amount">$1,000 simulated</span>
+              <span class="company-links"><a href="https://www.bloomberg.com/search?query=OpenAI" target="_blank" rel="noopener noreferrer">Bloomberg coverage search</a></span>
+              <span class="holding-detail">Private · no public stock ticker</span>
+            </li>
+            <li>
+              <span class="holding-name" data-company-logo="anthropic"><a href="company-financials.md#anthropic">Anthropic</a></span> · AI applications
+              <span class="holding-amount">$1,000 simulated</span>
+              <span class="company-links"><a href="https://www.bloomberg.com/search?query=Anthropic" target="_blank" rel="noopener noreferrer">Bloomberg coverage search</a></span>
+              <span class="holding-detail">Private · no public stock ticker</span>
+            </li>
+            <li>
+              <span class="holding-name" data-company-logo="google"><a href="company-financials.md#alphabet-google">Google / Alphabet (GOOGL)</a></span> · AI products and services
+              <span class="holding-amount">$1,000 simulated</span>
+              <span class="company-links"><a href="https://finance.yahoo.com/quote/GOOGL/" target="_blank" rel="noopener noreferrer">Yahoo Finance</a> · <a href="https://www.bloomberg.com/quote/GOOGL:US" target="_blank" rel="noopener noreferrer">Bloomberg</a></span>
+              <span class="holding-detail">Public parent-company shares; Google is part of Alphabet</span>
+            </li>
+            <li>
+              <span class="holding-name" data-company-logo="amazon"><a href="company-financials.md#amazon">Amazon (AMZN)</a></span> · AI products and AWS
+              <span class="holding-amount">$1,000 simulated</span>
+              <span class="company-links"><a href="https://finance.yahoo.com/quote/AMZN/" target="_blank" rel="noopener noreferrer">Yahoo Finance</a> · <a href="https://www.bloomberg.com/quote/AMZN:US" target="_blank" rel="noopener noreferrer">Bloomberg</a></span>
+              <span class="holding-detail">Public parent-company shares; AWS is part of Amazon</span>
+            </li>
+            <li>
+              <span class="holding-name" data-company-logo="xai"><a href="company-financials.md#xai-grok">Grok / xAI</a></span> · AI product and company
+              <span class="holding-amount">$1,000 simulated</span>
+              <span class="company-links"><a href="https://www.bloomberg.com/search?query=xAI" target="_blank" rel="noopener noreferrer">Bloomberg coverage search</a></span>
+              <span class="holding-detail">xAI is private; no public stock ticker</span>
+            </li>
+          </ul>
+        </article>
+
+        <article class="card watchlist-card">
+          <h3>Watchlist · Monitor only</h3>
+          <p class="card-copy">Private companies and future investment possibilities to follow; not included in the portfolio totals.</p>
+          <ul class="watchlist">
+            <li><span class="holding-name" data-company-logo="crewai"><a href="company-financials.md#crewai">CrewAI</a></span> · Multi-agent framework <span class="company-links"><a href="https://www.bloomberg.com/search?query=CrewAI" target="_blank" rel="noopener noreferrer">Bloomberg coverage search</a></span><span class="holding-detail">Private · no public ticker or verified quote page</span></li>
+            <li><span class="holding-name" data-company-logo="langchain"><a href="company-financials.md#langchain">LangChain</a></span> · Agent workflows <span class="company-links"><a href="https://www.bloomberg.com/search?query=LangChain" target="_blank" rel="noopener noreferrer">Bloomberg coverage search</a></span><span class="holding-detail">Private · no public ticker or verified quote page</span></li>
+            <li><span class="holding-name" data-company-logo="huggingface"><a href="company-financials.md#hugging-face">Hugging Face</a></span> · Model distribution <span class="company-links"><a href="https://www.bloomberg.com/search?query=Hugging%20Face" target="_blank" rel="noopener noreferrer">Bloomberg coverage search</a></span><span class="holding-detail">Private · no public ticker or verified quote page</span></li>
+            <li><span class="holding-name" data-company-logo="anthropic"><a href="company-financials.md#anthropic">Anthropic</a></span> · AI application <span class="company-links"><a href="https://www.bloomberg.com/search?query=Anthropic" target="_blank" rel="noopener noreferrer">Bloomberg coverage search</a></span><span class="caution">CAUTION · Private · no public ticker or verified quote page</span></li>
+            <li><span class="holding-name" data-company-logo="openai"><a href="company-financials.md#openai">OpenAI</a></span> · Application-layer exposure <span class="company-links"><a href="https://www.bloomberg.com/search?query=OpenAI" target="_blank" rel="noopener noreferrer">Bloomberg coverage search</a></span><span class="caution">CAUTION · Private · no public ticker or verified quote page</span></li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="section container" id="performance" aria-labelledby="performance-title">
+        <div class="section-heading">
+          <p class="eyebrow">Public holdings only</p>
+          <h2 id="performance-title">Tier performance since Day 1</h2>
+          <p>
+            Each line shows percentage change from the adjusted closing price on October 12, 2026.
+            The bold line is the equal-weight average of that tier’s publicly traded companies.
+          </p>
+        </div>
+        <p class="simulation-note">
+          Private companies and TBD positions have no public share-price history and are excluded.
+          Samsung Electronics is shown in KRW; its percentage return is not currency-converted.
+          Prices are from Yahoo Finance, adjusted close when available. Refresh data after market
+          close by running <code>python3 scripts/update_prices.py</code>, then reload this page.
+        </p>
+        <div class="tier-chart-grid">
+          <article class="card tier-chart-card" data-tier-chart data-name="Tier 1 · Core infrastructure" data-symbols="NVDA,TSM,QCOM,AAPL">
+            <h3>Tier 1 · Core infrastructure</h3>
+            <p class="card-copy">4 public companies · $1,000 per public position ($4,000 tracked).</p>
+            <div class="chart-content"><p class="chart-status" role="status">Loading price history…</p></div>
+          </article>
+          <article class="card tier-chart-card" data-tier-chart data-name="Tier 2 · Expanded infrastructure" data-symbols="005930.KS,AMD,INTC,AVGO">
+            <h3>Tier 2 · Expanded infrastructure</h3>
+            <p class="card-copy">4 public companies · $1,000 per public position ($4,000 tracked).</p>
+            <div class="chart-content"><p class="chart-status" role="status">Loading price history…</p></div>
+          </article>
+          <article class="card tier-chart-card" data-tier-chart data-name="App Tier · Simulated" data-symbols="GOOGL,AMZN">
+            <h3>App Tier · Simulated</h3>
+            <p class="card-copy">2 public companies · $1,000 simulated per public position ($2,000 tracked).</p>
+            <div class="chart-content"><p class="chart-status" role="status">Loading price history…</p></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section container" id="timeline" aria-labelledby="timeline-title">
+        <div class="section-heading">
+          <p class="eyebrow">Stay accountable</p>
+          <h2 id="timeline-title">Tracking timeline</h2>
+          <p>Review the thesis regularly and record how the infrastructure landscape changes.</p>
+        </div>
+        <ol class="timeline">
+          <li>
+            <span class="timeline-date">Quarterly</span>
+            <span class="timeline-title">Portfolio updates</span>
+            <p class="timeline-copy">Monitor portfolio performance.</p>
+          </li>
+          <li>
+            <span class="timeline-date">Annually</span>
+            <span class="timeline-title">Thesis review</span>
+            <p class="timeline-copy">Take a deeper look at the assumptions and evidence.</p>
+          </li>
+          <li>
+            <span class="timeline-date">October 2031</span>
+            <span class="timeline-title">5-year mark</span>
+            <p class="timeline-copy">Major thesis validation post.</p>
+          </li>
+          <li>
+            <span class="timeline-date">October 2036</span>
+            <span class="timeline-title">10-year mark</span>
+            <p class="timeline-copy">Personal data center era analysis.</p>
+          </li>
+          <li>
+            <span class="timeline-date">October 2056</span>
+            <span class="timeline-title">30-year mark</span>
+            <p class="timeline-copy">Final historical analysis.</p>
+          </li>
+        </ol>
+      </section>
+
+      <aside class="container disclaimer" aria-label="Investment disclaimer">
+        This page presents a long-term research thesis and portfolio framework for informational
+        purposes only. It is not financial advice or a recommendation to buy or sell securities.
+        Investments involve risk, including possible loss of principal. Verify all company,
+        valuation, and portfolio information before relying on it.
+      </aside>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>Strange New Worlds · AI Infrastructure Investment Framework</p>
+      </div>
+    </footer>
+    <script src="page-metadata.js" defer></script>
+    <script src="company-logos.js" defer></script>
+    <script src="tier-charts.js" defer></script>
+  </body>
+</html>
