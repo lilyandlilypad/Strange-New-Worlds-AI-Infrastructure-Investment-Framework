@@ -11,6 +11,11 @@ Private companies and TBD positions are excluded because they have no public sha
 Samsung Electronics is plotted in Korean won; the chart compares percentage returns and does not
 convert currencies. Prices are sourced from Yahoo Finance and may be corrected or delayed.
 
+The homepage embeds a TradingView ticker tape and individual quotes beside public holding names.
+Quote timing depends on the exchange and data entitlement and may be delayed. These third-party
+feeds are separate from the historical charts; use the dated Yahoo Finance dataset for the chart
+methodology and review records.
+
 To refresh the dataset, run `python3 scripts/update_prices.py` after the relevant markets close,
 then reload the homepage. The updater retrieves the full history from Day 1 and replaces
 `price-history.json`; it does not make trades or run automatically.

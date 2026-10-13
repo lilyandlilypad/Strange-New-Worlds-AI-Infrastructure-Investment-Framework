@@ -27,7 +27,9 @@ when changes are pushed to `main`.
 
 The homepage includes public-company trend charts for each tier, rebased to October 12, 2026
 (Day 1). Refresh the Yahoo Finance history with `python3 scripts/update_prices.py` after market
-close; see the [tracking plan](./tracking-plan.md#public-share-price-charts) for methodology.
+close; see the [tracking plan](./tracking-plan.md#public-share-price-charts) for methodology. A
+TradingView displays current quotes in a ticker tape and beside public holding names; quotes may
+be delayed depending on the exchange and data entitlement.
 
 ## Tracking milestones
 

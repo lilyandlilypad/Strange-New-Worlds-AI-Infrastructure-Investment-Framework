@@ -230,8 +230,23 @@
       .holding-name {
         display: inline-flex;
         align-items: center;
+        flex-wrap: wrap;
         gap: 0.45rem;
         font-weight: 650;
+      }
+
+      .company-market-quote {
+        display: inline-flex;
+        width: 150px;
+        min-height: 2rem;
+        align-items: center;
+        font-weight: 400;
+      }
+
+      .company-market-quote .tradingview-widget-container,
+      .company-market-quote .tradingview-widget-container__widget {
+        width: 100%;
+        min-height: 2rem;
       }
 
       .company-logo {
@@ -310,6 +325,31 @@
         background: rgb(70 201 170 / 7%);
         color: var(--muted);
         font-size: 0.9rem;
+      }
+
+      .live-quotes {
+        margin-block: 1.5rem;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        background: var(--surface);
+      }
+
+      .live-quotes-heading {
+        margin: 0;
+        padding: 0.75rem 1rem 0;
+        font-size: 1rem;
+      }
+
+      .live-quotes-note {
+        margin: 0;
+        padding: 0.25rem 1rem 0.75rem;
+        color: var(--muted);
+        font-size: 0.82rem;
+      }
+
+      .tradingview-widget-container {
+        min-height: 46px;
       }
 
       .tier-chart-card {
@@ -629,6 +669,47 @@
           Prices are from Yahoo Finance, adjusted close when available. Refresh data after market
           close by running <code>python3 scripts/update_prices.py</code>, then reload this page.
         </p>
+        <section class="live-quotes" aria-labelledby="live-quotes-title">
+          <h3 class="live-quotes-heading" id="live-quotes-title">Market quotes</h3>
+          <p class="live-quotes-note">
+            Quotes are provided by TradingView and may be delayed depending on the exchange and
+            data entitlement. Quotes also appear beside public holding names. The historical
+            charts below are separate and are not live.
+          </p>
+          <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget"></div>
+            <div class="tradingview-widget-copyright">
+              <a href="https://www.tradingview.com/" target="_blank" rel="noopener nofollow">
+                Market data by TradingView
+              </a>
+            </div>
+            <script
+              type="text/javascript"
+              src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js"
+              async
+            >
+              {
+                "symbols": [
+                  { "proName": "NASDAQ:NVDA", "title": "NVIDIA" },
+                  { "proName": "NYSE:TSM", "title": "TSMC" },
+                  { "proName": "NASDAQ:QCOM", "title": "Qualcomm" },
+                  { "proName": "NASDAQ:AAPL", "title": "Apple" },
+                  { "proName": "KRX:005930", "title": "Samsung Electronics" },
+                  { "proName": "NASDAQ:AMD", "title": "AMD" },
+                  { "proName": "NASDAQ:INTC", "title": "Intel" },
+                  { "proName": "NASDAQ:AVGO", "title": "Broadcom" },
+                  { "proName": "NASDAQ:GOOGL", "title": "Alphabet" },
+                  { "proName": "NASDAQ:AMZN", "title": "Amazon" }
+                ],
+                "showSymbolLogo": true,
+                "isTransparent": true,
+                "displayMode": "adaptive",
+                "colorTheme": "dark",
+                "locale": "en"
+              }
+            </script>
+          </div>
+        </section>
         <div class="tier-chart-grid">
           <article class="card tier-chart-card" data-tier-chart data-name="Tier 1 · Core infrastructure" data-symbols="NVDA,TSM,QCOM,AAPL">
             <h3>Tier 1 · Core infrastructure</h3>
@@ -712,6 +793,7 @@
     </footer>
     <script src="page-metadata.js" defer></script>
     <script src="company-logos.js" defer></script>
+    <script src="company-quotes.js" defer></script>
     <script src="tier-charts.js" defer></script>
   </body>
 </html>
