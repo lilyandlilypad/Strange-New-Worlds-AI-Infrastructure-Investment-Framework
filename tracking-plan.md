@@ -15,31 +15,78 @@ To refresh the dataset, run `python3 scripts/update_prices.py` after the relevan
 then reload the homepage. The updater retrieves the full history from Day 1 and replaces
 `price-history.json`; it does not make trades or run automatically.
 
-## Quarterly Update Plan
-Every quarter (starting Q4 2026), we'll assess:
+## Quarterly Tracking Schedule
 
-Portfolio Performance
+The first scheduled tracking checkpoint is January 1, 2027 (Q1). Continue every three months
+on the first day of each quarter. These are review dates, not quarter-end dates: record the
+latest available portfolio and market data, and note the date range covered.
 
-Are infrastructure stocks outperforming?
-Is thesis validating?
+| Checkpoint | Review date | Year-over-year overlay |
+| --- | --- | --- |
+| 2027 Q1 | January 1, 2027 | Establish the first scheduled-review baseline |
+| 2027 Q2 | April 1, 2027 | First same-quarter comparison will be 2028 Q2 |
+| 2027 Q3 | July 1, 2027 | First same-quarter comparison will be 2028 Q3 |
+| 2027 Q4 | October 1, 2027 | First same-quarter comparison will be 2028 Q4 |
+| 2028 Q1 | January 1, 2028 | Compare directly with 2027 Q1 |
+| 2028 Q2 | April 1, 2028 | Overlay and compare with 2027 Q2 |
+| 2028 Q3 | July 1, 2028 | Overlay and compare with 2027 Q3 |
+| 2028 Q4 | October 1, 2028 | Overlay and compare with 2027 Q4 |
 
-Market Indicators
+Continue the same January/April/July/October cadence after 2028. At each checkpoint from 2028
+onward, compare against the corresponding quarter one year earlier. Keep both observations
+visible side by side; the newer quarter does not replace the prior-year record.
 
-Are personal data centers gaining adoption?
-Is cloud AISP growth slowing?
-Are GPU/chip makers expanding margins?
+### Quarterly Review Template
 
-Watchlist Evolution
+Copy this block for each checkpoint and retain completed entries as the review history.
 
-Are distributed AI protocol players emerging?
-When will CrewAI/LangChain IPO?
-Is valuation matching our thesis?
+```text
+Checkpoint:
+Review date:
+Data through / period covered:
 
-Thesis Confidence Score
+Portfolio performance
+- Infrastructure portfolio return:
+- App Tier comparison return:
+- Benchmark or baseline used:
+- Are infrastructure stocks outperforming? Evidence:
 
-Start at 90% (high conviction)
-Adjust based on quarterly evidence
-Document what would break the thesis
+Market and thesis indicators
+- Personal / distributed AI adoption:
+- Cloud AI spending and growth:
+- GPU, chip, and manufacturing demand / margins:
+- Evidence for or against the thesis:
+
+Watchlist and valuation
+- New or changed distributed-AI companies:
+- IPO / public-market developments:
+- Valuation changes relevant to the thesis:
+
+Same-quarter year-over-year overlay
+- Prior-year checkpoint:
+- Portfolio performance then / now:
+- Market and thesis indicators then / now:
+- What changed, and what did not:
+
+Thesis confidence
+- Previous score (start at 90% for 2027 Q1):
+- Current score:
+- Evidence supporting the change:
+- What evidence would materially weaken or break the thesis:
+
+Actions and next checkpoint
+- Follow-up items:
+- Next review date:
+```
+
+### Annual Review Overlay
+
+The annual review happens on December 31, attached to the Q4 record rather than replacing the
+regular October 1 Q4 checkpoint. At year-end, compare the full-year result with the prior
+year-end, summarize all four quarterly records, assess whether the thesis assumptions still
+hold, and document changes to the watchlist, risks, and confidence score. Continue the quarterly
+same-quarter overlays as usual; for example, Q2 2028 is compared with Q2 2027, and the December
+31, 2028 annual review is compared with December 31, 2027.
 
 
 ## Conclusion
@@ -66,4 +113,4 @@ Either way, we'll learn something valuable.
 
 
 
-Last Updated: October 12, 2026 Next Review: December 31, 2026 (Q4 closing) 30-Year Review Date: October 12, 2056
+Last Updated: October 12, 2026 Next Review: January 1, 2027 (Q1 tracking) 30-Year Review Date: October 12, 2056

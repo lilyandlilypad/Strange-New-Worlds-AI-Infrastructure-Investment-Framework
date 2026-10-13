@@ -31,8 +31,9 @@ close; see the [tracking plan](./tracking-plan.md#public-share-price-charts) for
 
 ## Tracking milestones
 
-- Quarterly: Monitor portfolio performance and thesis indicators.
-- Annually: Reassess assumptions and document changes.
+- January 1, 2027: First scheduled quarterly tracking checkpoint.
+- Quarterly thereafter: Review on January 1, April 1, July 1, and October 1; compare each quarter with the same quarter in the prior year.
+- December 31 annually: Review the full year alongside Q4 and compare year-end results with the prior year.
 - October 2031: Five-year review.
 - October 2036: Ten-year review.
 - October 2056: Thirty-year review.
