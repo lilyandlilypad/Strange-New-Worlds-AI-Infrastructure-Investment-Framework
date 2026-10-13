@@ -481,6 +481,22 @@
         margin-bottom: 0.5rem;
       }
 
+      .leaderboard-panel {
+        margin-bottom: 1.5rem;
+        padding: 1rem;
+        border: 2px solid rgb(139 233 209 / 55%);
+        border-radius: 0.85rem;
+        background:
+          linear-gradient(135deg, rgb(70 201 170 / 10%), transparent 60%),
+          var(--page);
+        box-shadow: 0 0 1.25rem rgb(70 201 170 / 12%), inset 0 0 0 1px rgb(139 233 209 / 10%);
+      }
+
+      .leaderboard-panel h3 {
+        color: var(--accent);
+        letter-spacing: 0.02em;
+      }
+
       .prediction-form {
         display: grid;
         gap: 0.85rem;
@@ -579,6 +595,14 @@
         font-weight: 650;
       }
 
+      .prediction-leaderboard thead {
+        background: rgb(70 201 170 / 12%);
+      }
+
+      .prediction-leaderboard tbody tr:hover {
+        background: rgb(139 233 209 / 6%);
+      }
+
       .disclaimer {
         margin-block: 0 3rem;
         padding: 1rem 1.15rem;
@@ -638,6 +662,157 @@
     </header>
 
     <main id="top">
+      <section class="container" aria-label="Live market banner">
+        <section class="live-quotes" aria-labelledby="live-quotes-title">
+          <h3 class="live-quotes-heading" id="live-quotes-title">Market quotes</h3>
+          <p class="live-quotes-note">
+            Quotes are provided by TradingView and may be delayed depending on the exchange and
+            data entitlement. Quotes also appear beside public holding names.
+          </p>
+          <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget"></div>
+            <div class="tradingview-widget-copyright">
+              <a href="https://www.tradingview.com/" target="_blank" rel="noopener nofollow">
+                Market data by TradingView
+              </a>
+            </div>
+            <script
+              type="text/javascript"
+              src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js"
+              async
+            >
+              {
+                "symbols": [
+                  { "proName": "NASDAQ:NVDA", "title": "NVIDIA" },
+                  { "proName": "NYSE:TSM", "title": "TSMC" },
+                  { "proName": "NASDAQ:QCOM", "title": "Qualcomm" },
+                  { "proName": "NASDAQ:AAPL", "title": "Apple" },
+                  { "proName": "KRX:005930", "title": "Samsung Electronics" },
+                  { "proName": "NASDAQ:AMD", "title": "AMD" },
+                  { "proName": "NASDAQ:INTC", "title": "Intel" },
+                  { "proName": "NASDAQ:AVGO", "title": "Broadcom" },
+                  { "proName": "NASDAQ:GOOGL", "title": "Alphabet" },
+                  { "proName": "NASDAQ:AMZN", "title": "Amazon" }
+                ],
+                "showSymbolLogo": true,
+                "isTransparent": true,
+                "displayMode": "adaptive",
+                "colorTheme": "dark",
+                "locale": "en"
+              }
+            </script>
+          </div>
+        </section>
+      </section>
+
+      <section class="section container" aria-label="Prediction game and leaderboard">
+        <section class="card prediction-game" id="prediction-game" aria-labelledby="prediction-title">
+          <p class="eyebrow">Visitor challenge</p>
+          <h2 id="prediction-title">Price prediction game</h2>
+          <div class="leaderboard-panel">
+            <h3>Leaderboard</h3>
+            <p class="prediction-game-status" id="prediction-game-status" role="status">
+              Loading prediction game…
+            </p>
+            <div class="prediction-table-scroll">
+              <table class="prediction-leaderboard">
+                <thead>
+                  <tr>
+                    <th>Rank · avatar</th>
+                    <th>Stock</th>
+                    <th>Guess</th>
+                    <th>Accuracy</th>
+                    <th>Actual close</th>
+                  </tr>
+                </thead>
+                <tbody id="prediction-leaderboard-body">
+                  <tr><td colspan="5">Loading predictions…</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <p class="card-copy">
+            Pick a public company and predict its split-adjusted closing price for a quarterly,
+            annual, or five-year round. Round dates follow the tracking schedule.
+          </p>
+          <p class="card-copy">
+            Enter an avatar name only, not your real name. Predictions are public and permanent.
+            You get one prediction per stock in each round and cannot edit it. Score is 100%
+            minus percentage error, floored at 0%; closest forecast ranks highest.
+          </p>
+          <h3>Weekly reference prices</h3>
+          <ul
+            class="prediction-current-prices"
+            id="prediction-current-prices"
+            aria-label="Manually updated weekly reference prices"
+          ></ul>
+          <p class="prediction-price-status" id="prediction-price-status" role="status">
+            Loading weekly reference prices…
+          </p>
+          <form class="prediction-form" id="prediction-form">
+            <label>
+              Avatar name
+              <input
+                name="avatar"
+                type="text"
+                minlength="2"
+                maxlength="24"
+                pattern="[A-Za-z0-9 _.-]{2,24}"
+                autocomplete="nickname"
+                required
+              >
+            </label>
+            <label>
+              Round
+              <select id="prediction-round" name="round" required></select>
+            </label>
+            <label>
+              Company
+              <select id="prediction-symbol" name="symbol" required></select>
+            </label>
+            <label>
+              Prediction method
+              <select id="prediction-mode" name="prediction-mode" required>
+                <option value="exact">Enter exact price</option>
+                <option value="percent">Enter +/- % from current price</option>
+              </select>
+            </label>
+            <label id="prediction-exact-field">
+              Exact predicted closing price
+              <input
+                id="prediction-price"
+                name="price"
+                type="number"
+                min="0.0001"
+                max="999999999"
+                step="any"
+                inputmode="decimal"
+                required
+              >
+            </label>
+            <label id="prediction-percent-field" hidden>
+              Change from weekly reference price (%)
+              <input
+                id="prediction-percent"
+                name="percent"
+                type="number"
+                min="-99.99"
+                max="999999"
+                step="any"
+                inputmode="decimal"
+                disabled
+                required
+              >
+            </label>
+            <p class="prediction-form-status" id="prediction-price-preview" aria-live="polite">
+              Enter a price, or choose a percentage move from the weekly reference price.
+            </p>
+            <button id="prediction-submit" type="submit" disabled>Submit prediction</button>
+            <p class="prediction-form-status" id="prediction-status" role="status"></p>
+          </form>
+        </section>
+      </section>
+
       <section class="hero container" aria-labelledby="page-title">
         <p class="eyebrow">A 30-year public thesis test</p>
         <h1 id="page-title">Follow the infrastructure behind the AI era.</h1>
@@ -784,47 +959,6 @@
           Prices are from Yahoo Finance, adjusted close when available. Refresh data after market
           close by running <code>python3 scripts/update_prices.py</code>, then reload this page.
         </p>
-        <section class="live-quotes" aria-labelledby="live-quotes-title">
-          <h3 class="live-quotes-heading" id="live-quotes-title">Market quotes</h3>
-          <p class="live-quotes-note">
-            Quotes are provided by TradingView and may be delayed depending on the exchange and
-            data entitlement. Quotes also appear beside public holding names. The historical
-            charts below are separate and are not live.
-          </p>
-          <div class="tradingview-widget-container">
-            <div class="tradingview-widget-container__widget"></div>
-            <div class="tradingview-widget-copyright">
-              <a href="https://www.tradingview.com/" target="_blank" rel="noopener nofollow">
-                Market data by TradingView
-              </a>
-            </div>
-            <script
-              type="text/javascript"
-              src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js"
-              async
-            >
-              {
-                "symbols": [
-                  { "proName": "NASDAQ:NVDA", "title": "NVIDIA" },
-                  { "proName": "NYSE:TSM", "title": "TSMC" },
-                  { "proName": "NASDAQ:QCOM", "title": "Qualcomm" },
-                  { "proName": "NASDAQ:AAPL", "title": "Apple" },
-                  { "proName": "KRX:005930", "title": "Samsung Electronics" },
-                  { "proName": "NASDAQ:AMD", "title": "AMD" },
-                  { "proName": "NASDAQ:INTC", "title": "Intel" },
-                  { "proName": "NASDAQ:AVGO", "title": "Broadcom" },
-                  { "proName": "NASDAQ:GOOGL", "title": "Alphabet" },
-                  { "proName": "NASDAQ:AMZN", "title": "Amazon" }
-                ],
-                "showSymbolLogo": true,
-                "isTransparent": true,
-                "displayMode": "adaptive",
-                "colorTheme": "dark",
-                "locale": "en"
-              }
-            </script>
-          </div>
-        </section>
         <div class="tier-chart-grid">
           <article class="card tier-chart-card" data-tier-chart data-name="Tier 1 · Core infrastructure" data-symbols="NVDA,TSM,QCOM,AAPL">
             <h3>Tier 1 · Core infrastructure</h3>
@@ -844,7 +978,7 @@
         </div>
       </section>
 
-      <section class="section container" id="tracking" aria-label="Tracking schedule and prediction game">
+      <section class="section container" id="tracking" aria-label="Tracking schedule">
         <div class="tracking-game-grid">
           <div class="tracking-panel" id="timeline">
             <div class="section-heading">
@@ -894,109 +1028,6 @@
               comparisons.
             </p>
           </div>
-          <section class="card prediction-game" id="prediction-game" aria-labelledby="prediction-title">
-            <p class="eyebrow">Visitor challenge</p>
-            <h2 id="prediction-title">Price prediction game</h2>
-            <p class="card-copy">
-              Pick a public company and predict its split-adjusted closing price for a quarterly,
-              annual, or five-year round. Round dates follow the tracking schedule.
-            </p>
-            <p class="card-copy">
-              Enter an avatar name only, not your real name. Predictions are public and permanent.
-              You get one prediction per stock in each round and cannot edit it. Score is 100%
-              minus percentage error, floored at 0%; closest forecast ranks highest.
-            </p>
-            <h3>Weekly reference prices</h3>
-            <ul
-              class="prediction-current-prices"
-              id="prediction-current-prices"
-              aria-label="Manually updated weekly reference prices"
-            ></ul>
-            <p class="prediction-price-status" id="prediction-price-status" role="status">
-              Loading weekly reference prices…
-            </p>
-            <form class="prediction-form" id="prediction-form">
-              <label>
-                Avatar name
-                <input
-                  name="avatar"
-                  type="text"
-                  minlength="2"
-                  maxlength="24"
-                  pattern="[A-Za-z0-9 _.-]{2,24}"
-                  autocomplete="nickname"
-                  required
-                >
-              </label>
-              <label>
-                Round
-                <select id="prediction-round" name="round" required></select>
-              </label>
-              <label>
-                Company
-                <select id="prediction-symbol" name="symbol" required></select>
-              </label>
-              <label>
-                Prediction method
-                <select id="prediction-mode" name="prediction-mode" required>
-                  <option value="exact">Enter exact price</option>
-                  <option value="percent">Enter +/- % from current price</option>
-                </select>
-              </label>
-              <label id="prediction-exact-field">
-                Exact predicted closing price
-                <input
-                  id="prediction-price"
-                  name="price"
-                  type="number"
-                  min="0.0001"
-                  max="999999999"
-                  step="any"
-                  inputmode="decimal"
-                  required
-                >
-              </label>
-              <label id="prediction-percent-field" hidden>
-                Change from weekly reference price (%)
-                <input
-                  id="prediction-percent"
-                  name="percent"
-                  type="number"
-                  min="-99.99"
-                  max="999999"
-                  step="any"
-                  inputmode="decimal"
-                  disabled
-                  required
-                >
-              </label>
-              <p class="prediction-form-status" id="prediction-price-preview" aria-live="polite">
-                Enter a price, or choose a percentage move from the weekly reference price.
-              </p>
-              <button id="prediction-submit" type="submit" disabled>Submit prediction</button>
-              <p class="prediction-form-status" id="prediction-status" role="status"></p>
-            </form>
-            <h3>Leaderboard</h3>
-            <p class="prediction-game-status" id="prediction-game-status" role="status">
-              Loading prediction game…
-            </p>
-            <div class="prediction-table-scroll">
-              <table class="prediction-leaderboard">
-                <thead>
-                  <tr>
-                    <th>Rank · avatar</th>
-                    <th>Stock</th>
-                    <th>Guess</th>
-                    <th>Accuracy</th>
-                    <th>Actual close</th>
-                  </tr>
-                </thead>
-                <tbody id="prediction-leaderboard-body">
-                  <tr><td colspan="5">Loading predictions…</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </section>
         </div>
       </section>
 
